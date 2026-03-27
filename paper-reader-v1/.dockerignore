@@ -1,0 +1,7 @@
+.venv
+__pycache__
+*.pyc
+uploads
+paper_reader.db
+.git
+Dockerfile*

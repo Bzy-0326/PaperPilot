@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: ./paper-reader-v1
+      dockerfile: Dockerfile
+    container_name: paper-reader-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////app/data/paper_reader.db
+      HF_TOKEN: ${HF_TOKEN:-}
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:7b}
+      OLLAMA_API_KEY: ${OLLAMA_API_KEY:-ollama}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      KIMI_API_KEY: ${KIMI_API_KEY:-}
+      QWEN_API_KEY: ${QWEN_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-}
+    volumes:
+      - ./paper-reader-v1/uploads:/app/uploads
+      - ./paper-reader-v1/data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./paper-reader-ui
+      dockerfile: Dockerfile
+    container_name: paper-reader-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

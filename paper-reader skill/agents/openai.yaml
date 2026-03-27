@@ -1,0 +1,7 @@
+interface:
+  display_name: "Paper Reader"
+  short_description: "Install and improve a paper reader app."
+  default_prompt: "Use $paper-reader to install, run, debug, or improve a Paper Reader product built with Next.js and FastAPI."
+
+policy:
+  allow_implicit_invocation: true

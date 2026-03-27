@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paper Reader</title>
+    <meta
+      name="description"
+      content="Paper Reader is a productized paper recommendation experience for daily research scanning, ranking, and detail analysis."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <div class="brand">Paper Reader</div>
+          <div class="nav-links">
+            <a href="../README.md">README</a>
+            <a href="../paper-reader-ui">Frontend</a>
+            <a href="../paper-reader-v1">Backend</a>
+          </div>
+        </nav>
+
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Research Product · GitHub Showcase</div>
+            <h1>Turn daily paper feeds into a product people actually want to use.</h1>
+            <p class="hero-copy">
+              Paper Reader is designed for researchers who do not just want more papers,
+              but better reading decisions: ranked suggestions, clean summaries, detail pages,
+              reproducibility clues, and normalized PDF downloads.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-btn" href="../README.md">Open README</a>
+              <a class="secondary-btn" href="https://github.com/new" target="_blank" rel="noreferrer">Publish to GitHub</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="mini-title">Product idea</div>
+            <ul>
+              <li>Topic-based daily paper recommendation</li>
+              <li>Relative ranking inside a topic</li>
+              <li>Readable paper detail analysis</li>
+              <li>Local model or API model support</li>
+              <li>Docker-friendly sharing</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section two-col">
+          <div>
+            <div class="section-label">Why it matters</div>
+            <h2>Most paper tools stop at collection. This one tries to help users decide.</h2>
+          </div>
+          <div class="feature-stack">
+            <article class="feature-card">
+              <h3>Opinionated homepage</h3>
+              <p>Users see top-ranked cards, one-sentence takeaways, and tags instead of a cluttered wall of metadata.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Decision-friendly detail page</h3>
+              <p>Each paper expands into background, summary, method notes, reproducibility signals, and resource links.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Practical deployment</h3>
+              <p>Supports Ollama for local inference and cloud APIs for easier onboarding on other machines.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section metrics">
+          <div class="section-label">Product framing</div>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <strong>Daily scan</strong>
+              <span>Pull recent papers by topic and turn them into ranked recommendations.</span>
+            </div>
+            <div class="metric-card">
+              <strong>Readable output</strong>
+              <span>Focus on one-sentence summaries, tags, and concise detail pages.</span>
+            </div>
+            <div class="metric-card">
+              <strong>Shareable setup</strong>
+              <span>Docker, GitHub Pages-ready docs, and API-based model fallback for easier use.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label">How it works</div>
+          <div class="workflow">
+            <div class="workflow-step"><span>01</span><p>User enters a topic like LLM, RAG, or Multimodal.</p></div>
+            <div class="workflow-step"><span>02</span><p>Backend fetches recent papers and runs lightweight analysis.</p></div>
+            <div class="workflow-step"><span>03</span><p>Results are ranked inside the topic and shown as concise cards.</p></div>
+            <div class="workflow-step"><span>04</span><p>Detail pages help users decide what is worth reading deeply.</p></div>
+          </div>
+        </section>
+
+        <section class="section banner">
+          <div>
+            <div class="section-label">For GitHub visitors</div>
+            <h2>This repo is meant to read like a product, not just a code dump.</h2>
+          </div>
+          <p>
+            If you publish this project on GitHub, enable Pages from the <code>docs/</code> folder and use
+            the README as the primary repo narrative. Add screenshots later and the presentation quality will improve a lot.
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+﻿# OS
+.DS_Store
+Thumbs.db
+
+# Node / Next.js
+paper-reader-ui/node_modules/
+paper-reader-ui/.next/
+paper-reader-ui/out/
+
+# Python
+paper-reader-v1/.venv/
+paper-reader-v1/__pycache__/
+paper-reader-v1/.pytest_cache/
+paper-reader-v1/*.pyc
+paper-reader-v1/*.pyo
+paper-reader-v1/*.pyd
+
+# Local runtime data
+paper-reader-v1/paper_reader.db
+paper-reader-v1/data/
+paper-reader-v1/uploads/
+paper-reader-v1/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editors
+.vscode/
+.idea/
