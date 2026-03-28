@@ -1,40 +1,74 @@
-# Paper Reader
+# PaperPilot
 
-> A productized paper recommendation tool that helps researchers decide what to read first, why it matters, and whether it is worth reproducing.
+> Stop scrolling paper feeds. Start making better reading decisions.
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Deploy-Docker-blue)](https://www.docker.com/)
 [![Bring Your Own API](https://img.shields.io/badge/LLM-BYO%20API-111827)](#quick-start)
 
-Paper Reader is built for a very practical research question:
+PaperPilot is an AI paper recommendation and decision assistant for researchers.
+
+Instead of showing a raw list of papers, it helps users answer the questions that actually matter:
 
 - Which paper should I read first?
-- Which one is actually worth deeper attention?
-- Which one is more realistic to reproduce or track?
+- Which one is worth deeper attention?
+- Which one is more realistic to reproduce?
+- Which one should I save for follow-up later?
 
-Instead of dumping a list of papers on the screen, it turns a topic into:
+It turns a research topic into:
 
-- ranked recommendation cards
+- ranked recommendations
 - one-sentence takeaways
-- clean detail pages
-- comparison views for decision making
-- lightweight follow-up lists
+- decision-friendly detail pages
+- side-by-side paper comparison
+- follow-up lists for reading, reproduction, and topic tracking
+- automatically renamed PDF downloads for cleaner storage
 
-## Why People Star It
+## Product Tour
 
-- It feels like a product, not just a crawler.
-- It turns paper discovery into reading decisions.
-- It is easy to try with Docker and your own API key.
-- It supports both lightweight public usage and local-model workflows.
+### 1. Ranked Recommendations
 
-## Core Features
+The homepage turns a topic into a ranked list with recommendation scores, one-sentence takeaways, and compact action buttons.
+
+![Homepage](./docs/assets/homepage.png)
+
+### 2. Decision Comparison
+
+Instead of showing a flat list of papers, PaperPilot helps users judge which candidate deserves deeper attention first.
+
+![Compare View](./docs/assets/compare-page.png)
+
+### 3. Detail Analysis
+
+Each paper has a decision-friendly detail page with recommendation conclusion, background, summary, method, innovation, limitations, and reproducibility evidence.
+
+![Detail Page](./docs/assets/detail-page.png)
+
+### 4. Follow-Up Workflow
+
+Users can keep papers for reading, reproduction, or topic tracking instead of losing them after one browse session.
+
+![Follow-Up Workflow](./docs/assets/follow-up.png)
+
+## Why It Stands Out
+
+- It recommends instead of merely listing papers.
+- It ranks papers inside the same topic instead of treating every paper as equal.
+- It helps users compare candidates before investing reading time.
+- It supports follow-up workflows instead of one-time browsing.
+- It automatically renames downloaded PDFs, making long-term storage and retrieval much easier.
+- It is designed like a product, not just a crawler or course demo.
+
+## Product Highlights
 
 ### 1. Daily Topic-Based Recommendations
 
 - search by research topic such as `LLM`, `RAG`, `Multimodal`, or `Reasoning`
 - get ranked paper cards instead of a raw feed
 - each card shows a one-sentence takeaway and compact tags
+- recommendation scores are visible as a product surface, while ranking is driven by same-topic relative comparison
+- supports multiple research goals such as deep reading, reproduction, inspiration, and related work review
 
 ### 2. Decision-Friendly Detail Pages
 
@@ -42,13 +76,15 @@ Instead of dumping a list of papers on the screen, it turns a topic into:
 - background and goal
 - summary and method notes
 - reproducibility evidence
-- normalized PDF download naming
+- cleaner resource presentation
+- normalized PDF download naming for easier local storage
 
 ### 3. Paper Comparison
 
 - compare 2 to 3 papers under the same topic
 - quickly judge which one deserves time first
 - useful for reading, reproduction, inspiration, and related work decisions
+- pushes the product beyond paper discovery into research decision support
 
 ### 4. My Follow-Ups
 
@@ -56,6 +92,7 @@ Instead of dumping a list of papers on the screen, it turns a topic into:
 - save papers into reproduction list
 - save papers into topic candidate list
 - persist follow-up items in the backend database
+- keep the workflow alive after discovery
 
 ## Quick Start
 
@@ -135,16 +172,22 @@ pip install -r requirements.txt
 python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-## Screenshots To Add
+## Media Files
 
-For a stronger GitHub page, add these screenshots to the README later:
+Place your screenshots under `docs/assets/` with these filenames:
 
-1. Homepage recommendations
-2. Paper detail page
-3. Compare page
-4. Research toolbox / follow-up view
+```text
+docs/assets/homepage.png
+docs/assets/detail-page.png
+docs/assets/compare-page.png
+docs/assets/follow-up.png
+```
 
-If you add screenshots, place them under `docs/` or `docs/assets/` and link them here.
+If you want to use a GIF, you can replace one of the screenshots with:
+
+```text
+docs/assets/demo.gif
+```
 
 ## Tech Stack
 
@@ -200,6 +243,7 @@ This repo is not just a code dump. It is intended to show product thinking:
 - decision support instead of paper collection
 - follow-up workflow instead of one-time browsing
 - deployability instead of environment-heavy prototypes
+- practical PDF saving instead of messy download clutter
 
 ## License
 
