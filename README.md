@@ -49,7 +49,11 @@ Each paper has a decision-friendly detail page with recommendation conclusion, b
 
 Users can keep papers for reading, reproduction, or topic tracking instead of losing them after one browse session.
 
-![Follow-Up Workflow](./docs/assets/follow-up.jpg)
+<p align="center">
+  <img src="./docs/assets/follow-up-reading.jpg" alt="Follow-Up Reading List" width="32%" />
+  <img src="./docs/assets/follow-up-reproduce.jpg" alt="Follow-Up Reproduction List" width="32%" />
+  <img src="./docs/assets/follow-up-topic.jpg" alt="Follow-Up Topic Candidates" width="32%" />
+</p>
 
 ## Why It Stands Out
 
@@ -180,7 +184,9 @@ Place your screenshots under `docs/assets/` with these filenames:
 docs/assets/homepage.jpg
 docs/assets/detail-page.jpg
 docs/assets/compare-page.jpg
-docs/assets/follow-up.jpg
+docs/assets/follow-up-reading.jpg
+docs/assets/follow-up-reproduce.jpg
+docs/assets/follow-up-topic.jpg
 ```
 
 If you want to use a GIF, you can replace one of the screenshots with:
