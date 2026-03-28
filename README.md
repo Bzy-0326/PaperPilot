@@ -25,6 +25,12 @@ It turns a research topic into:
 - follow-up lists for reading, reproduction, and topic tracking
 - automatically renamed PDF downloads for cleaner storage
 
+## Demo
+
+See the full product flow below:
+
+![Demo](./docs/assets/demo.gif)
+
 ## Product Tour
 
 ### 1. Ranked Recommendations
