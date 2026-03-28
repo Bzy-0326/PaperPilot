@@ -108,9 +108,34 @@ Users can keep papers for reading, reproduction, or topic tracking instead of lo
 
 This repo is optimized for the lightest onboarding path first.
 
+### What you actually need
+
+Running the app and using the core recommendation features are two different things:
+
+- `Docker` runs the frontend and backend services
+- `A model provider` powers recommendation, analysis, comparison, and follow-up reasoning
+
+That means:
+
+- `Docker only` = the app can start, but core AI analysis will not fully work
+- `Docker + your own API key` = recommended public path, easiest for most users
+- `Docker + local Ollama model` = also works, but setup is heavier
+
 ### Recommended path: Docker + your own API key
 
-You do **not** need Ollama, a local model download, Node.js, or Python just to try the product.
+This is the best choice for most users.
+
+You do **not** need:
+
+- Ollama
+- a local 7B model download
+- Node.js
+- Python
+
+You **do** need:
+
+- Docker Desktop
+- your own API key from `DeepSeek`, `Kimi`, `Qwen`, or another OpenAI-compatible provider
 
 Run:
 
@@ -131,24 +156,73 @@ Inside the app:
 4. Enter a topic like `CoT`, `LLM`, `RAG`, `Reasoning`, or `Multimodal`
 5. Start using the product
 
-This is the default public onboarding path.
+Why this path is recommended:
+
+- lowest deployment friction
+- no local model download
+- better cross-platform experience
+- easiest path for GitHub visitors
+
+Tradeoffs:
+
+- requires your own API key
+- depends on external model service availability
+- model usage costs depend on your provider
+
+### If you do not have your own API key
+
+Then the product cannot complete the full AI recommendation workflow through online APIs.
+
+In that case, your alternative is:
+
+- install `Ollama`
+- pull a local model
+- run the app with local inference
+
+This works, but it is a heavier setup than the default public path.
 
 ## Deployment Modes
 
-### Public / lightweight mode
+### 1. Public / lightweight mode
 
-Best for first-time users.
+Best for:
+
+- first-time users
+- GitHub visitors
+- demos
+- cross-platform onboarding
+
+Requirements:
 
 - Docker
 - your own API key
-- no Ollama required
-- no local model download required
 
-### Advanced local mode
+Pros:
 
-Best for users who explicitly want local inference.
+- easiest setup
+- no local model download
+- works better across Windows and macOS
 
-Optional:
+Cons:
+
+- requires an API key
+- depends on third-party model services
+
+Recommendation:
+
+- this should be the default path for almost everyone
+
+### 2. Advanced local mode
+
+Best for users who explicitly want local inference and do not want to rely on an external API.
+
+Requirements:
+
+- Docker
+- Ollama
+- a local model such as `qwen2.5:7b`
+
+Example:
 
 ```bash
 ollama pull qwen2.5:7b
@@ -160,27 +234,64 @@ Then use:
 - model: `qwen2.5:7b`
 - base URL: `http://localhost:11434`
 
-### Development mode
+Pros:
+
+- no external API key required
+- more private local usage
+
+Cons:
+
+- heavier setup
+- local model download is large
+- slower or harder for first-time users
+
+Recommendation:
+
+- use this only if you specifically want local inference
+
+### 3. Development mode
 
 Use this only if you want to edit the code.
+
+This mode is intentionally not the primary public onboarding path.
+
+#### Windows
 
 Frontend:
 
 ```bash
 cd paper-reader-ui
-npm install
-npm run dev
+start_frontend.bat
 ```
 
 Backend:
 
 ```bash
 cd paper-reader-v1
-py -3.11 -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+start_backend.bat
 ```
+
+#### macOS / Linux
+
+Frontend:
+
+```bash
+cd paper-reader-ui
+./start_frontend.sh
+```
+
+Backend:
+
+```bash
+cd paper-reader-v1
+./start_backend.sh
+```
+
+Notes:
+
+- `.bat` files are Windows-only convenience scripts
+- `.sh` files are for macOS/Linux
+- if you only want to try the product, prefer Docker instead of local development
 
 ## Media Files
 
