@@ -543,27 +543,34 @@ export default function HomePage() {
       return setShowSettings(true);
     }
 
+    let timeoutId: number | undefined;
     try {
       setLoading(true);
       setHasSearched(true);
-      setItems([]);
       setSelectedCompareIds([]);
       setMessage(text.analyzing);
+      const controller = new AbortController();
+      timeoutId = window.setTimeout(() => controller.abort(), 35000);
 
       const res = await fetch(`${getApiBaseUrl()}/papers/daily/run`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ project_topic: projectTopic, limit, llm_config: llmPayload }),
+        signal: controller.signal,
       });
-
       const data = await res.json();
       if (!res.ok) throw new Error(data?.detail || data?.error_message || "推荐生成失败");
       setItems(data.items || []);
       setMessage(data.message || text.waitingSummary);
     } catch (error) {
       console.error(error);
-      setMessage(text.searchFailed);
+      if (error instanceof DOMException && error.name === "AbortError") {
+        setMessage("本次生成耗时过长，已停止等待。你可以稍后再试，或先检查模型与后端状态。");
+      } else {
+        setMessage(text.searchFailed);
+      }
     } finally {
+      if (timeoutId) window.clearTimeout(timeoutId);
       setLoading(false);
     }
   };

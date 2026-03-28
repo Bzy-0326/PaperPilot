@@ -130,11 +130,23 @@ def _run_daily_pipeline(
             "llm": get_effective_llm_info(llm_config),
         }
 
+    existing_items = list_recommendations(project_topic=normalized_topic, limit=limit)
+    if existing_items:
+        return {
+            "message": f"已返回 {normalized_topic} 的近期推荐结果，可先继续浏览；如需更新，可稍后再次生成。",
+            "project_topic": normalized_topic,
+            "fetched_count": 0,
+            "checked_count": 0,
+            "returned_count": len(existing_items),
+            "items": existing_items,
+            "cache_hit": True,
+            "llm": get_effective_llm_info(llm_config),
+        }
+
     papers = fetch_hf_daily_papers()
     save_papers(papers)
-    delete_light_analyses_by_topic(normalized_topic)
-
-    candidate_rows = get_recent_papers(50)
+    candidate_limit = min(20, max(limit * 4, 12))
+    candidate_rows = get_recent_papers(candidate_limit)
     checked_count = 0
     returned_count = 0
 

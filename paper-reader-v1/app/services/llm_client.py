@@ -146,6 +146,8 @@ def _build_client(config: Optional[Dict[str, Any]] = None) -> OpenAI:
     return OpenAI(
         base_url=base_url,
         api_key=resolved["api_key"] or "ollama",
+        timeout=45.0,
+        max_retries=1,
     )
 
 
