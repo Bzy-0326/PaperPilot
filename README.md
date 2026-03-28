@@ -31,25 +31,25 @@ It turns a research topic into:
 
 The homepage turns a topic into a ranked list with recommendation scores, one-sentence takeaways, and compact action buttons.
 
-![Homepage](./docs/assets/homepage.png)
+![Homepage](./docs/assets/homepage.jpg)
 
 ### 2. Decision Comparison
 
 Instead of showing a flat list of papers, PaperPilot helps users judge which candidate deserves deeper attention first.
 
-![Compare View](./docs/assets/compare-page.png)
+![Compare View](./docs/assets/compare-page.jpg)
 
 ### 3. Detail Analysis
 
 Each paper has a decision-friendly detail page with recommendation conclusion, background, summary, method, innovation, limitations, and reproducibility evidence.
 
-![Detail Page](./docs/assets/detail-page.png)
+![Detail Page](./docs/assets/detail-page.jpg)
 
 ### 4. Follow-Up Workflow
 
 Users can keep papers for reading, reproduction, or topic tracking instead of losing them after one browse session.
 
-![Follow-Up Workflow](./docs/assets/follow-up.png)
+![Follow-Up Workflow](./docs/assets/follow-up.jpg)
 
 ## Why It Stands Out
 
@@ -64,7 +64,7 @@ Users can keep papers for reading, reproduction, or topic tracking instead of lo
 
 ### 1. Daily Topic-Based Recommendations
 
-- search by research topic such as `LLM`, `RAG`, `Multimodal`, or `Reasoning`
+- search by research topics such as `CoT`, `LLM`, `RAG`, `Multimodal`, or `Reasoning`
 - get ranked paper cards instead of a raw feed
 - each card shows a one-sentence takeaway and compact tags
 - recommendation scores are visible as a product surface, while ranking is driven by same-topic relative comparison
@@ -118,7 +118,7 @@ Inside the app:
 1. Open `Model Settings`
 2. Choose `DeepSeek`, `Kimi`, `Qwen`, or another OpenAI-compatible API
 3. Paste your own API key
-4. Enter a topic like `LLM`, `RAG`, `Reasoning`, or `Multimodal`
+4. Enter a topic like `CoT`, `LLM`, `RAG`, `Reasoning`, or `Multimodal`
 5. Start using the product
 
 This is the default public onboarding path.
@@ -177,10 +177,10 @@ python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 Place your screenshots under `docs/assets/` with these filenames:
 
 ```text
-docs/assets/homepage.png
-docs/assets/detail-page.png
-docs/assets/compare-page.png
-docs/assets/follow-up.png
+docs/assets/homepage.jpg
+docs/assets/detail-page.jpg
+docs/assets/compare-page.jpg
+docs/assets/follow-up.jpg
 ```
 
 If you want to use a GIF, you can replace one of the screenshots with:
