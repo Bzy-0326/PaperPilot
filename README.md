@@ -145,6 +145,14 @@ docker compose up --build
 
 Then open the app and keep the default `PaperPilot Demo / no setup` preset.
 
+For the clearest first preview, start with one of these demo topics:
+
+- `LLM`
+- `RAG`
+- `CoT`
+- `Reasoning`
+- `Multimodal`
+
 This mode is best for:
 
 - quick first try
@@ -155,6 +163,14 @@ Tradeoffs:
 
 - uses built-in sample recommendations instead of live model analysis
 - great for product preview, not for evaluating real daily recommendation quality
+
+Important:
+
+- demo mode is meant for first-time preview and GitHub visitors
+- it can show the full product workflow without any API key
+- demo mode is optimized for preview topics such as `LLM`, `RAG`, `CoT`, `Reasoning`, and `Multimodal`
+- for other topics, demo mode still shows the interface and sample workflow, but it is not a live topic-specific analysis path
+- if you want broader topic coverage, real-time recommendation generation, and real analysis results for your own searches, you still need either your own API key or a local Ollama model
 
 ### Recommended path: Docker + your own API key
 
@@ -203,6 +219,8 @@ Tradeoffs:
 - requires your own API key
 - depends on external model service availability
 - model usage costs depend on your provider
+
+In practice, for lightweight daily recommendation usage such as Top 3 or Top 5 searches, API usage is usually modest. The actual cost still depends on your provider, model choice, and how often you search.
 
 ### If you do not have your own API key
 
@@ -355,25 +373,6 @@ Notes:
 - `.bat` files are Windows-only convenience scripts
 - `.sh` files are for macOS/Linux
 - if you only want to try the product, prefer Docker instead of local development
-
-## Media Files
-
-Place your screenshots under `docs/assets/` with these filenames:
-
-```text
-docs/assets/homepage.jpg
-docs/assets/detail-page.jpg
-docs/assets/compare-page.jpg
-docs/assets/follow-up-reading.png
-docs/assets/follow-up-reproduce.png
-docs/assets/follow-up-topic.png
-```
-
-If you want to use a GIF, you can replace one of the screenshots with:
-
-```text
-docs/assets/demo.gif
-```
 
 ## Tech Stack
 

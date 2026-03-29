@@ -808,6 +808,13 @@ export default function HomePage() {
                   ? text.settingsTipLocal
                   : text.settingsTipApi}
             </div>
+            {llmConfig.provider === "demo" && (
+              <div style={{ color: "#475569", fontSize: 13, lineHeight: 1.8, marginTop: 10, marginBottom: 4 }}>
+                {uiLanguage === "zh"
+                  ? "Demo 建议先搜 LLM、RAG、CoT、Reasoning 或 Multimodal。若要做更广的自定义主题搜索，请切换到自己的 API Key 或本地模型。"
+                  : "For demo mode, start with LLM, RAG, CoT, Reasoning, or Multimodal. For broader custom topic search, switch to your own API key or a local model."}
+              </div>
+            )}
 
             <div style={configGridStyle}>
               <label style={fieldStyle}><span style={labelStyle}>{text.modelPreset}</span><select value={selectedPresetId} onChange={(e) => handlePresetChange(e.target.value)} style={inputStyle}>{MODEL_PRESETS.map((preset) => <option key={preset.id} value={preset.id}>{preset.label}</option>)}</select></label>
