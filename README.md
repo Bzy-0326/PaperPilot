@@ -9,16 +9,16 @@
 
 PaperPilot is an AI research assistant that helps you decide what to read next.
 
-> Demo mode lets you preview the full product without an API key or a local model. Start with LLM, RAG, CoT, Reasoning, or Multimodal. For real topic search and live analysis, switch to your own API key or a local Ollama model.
-
-Instead of showing another long paper list, it helps you:
+It helps you:
 
 - rank papers within the same topic
 - compare candidate papers side by side
 - understand which paper deserves deeper attention first
 - keep important papers in a follow-up workflow
 
-It is built for researchers who want to read, reproduce, or track the right papers - not just collect more of them.
+And it keeps downloaded PDFs easier to search and manage with clean filenames based on paper titles and dates.
+
+> Demo mode lets you preview the full product without an API key or a local model. Start with LLM, RAG, CoT, Reasoning, or Multimodal. For real topic search and live analysis, switch to your own API key or a local Ollama model.
 
 ## What is PaperPilot?
 
