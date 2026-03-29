@@ -693,6 +693,25 @@ export default function HomePage() {
           {backendLLM?.model && <span>{text.defaultModel}：{backendLLM.model}</span>}
         </div>
 
+        {llmConfig.provider === "demo" && (
+          <div
+            style={{
+              marginBottom: 14,
+              padding: "14px 16px",
+              borderRadius: 14,
+              background: "#f8fafc",
+              border: "1px solid #e2e8f0",
+              color: "#334155",
+              lineHeight: 1.8,
+              fontSize: 14,
+            }}
+          >
+            <strong style={{ color: "#111827" }}>Demo 模式：</strong>
+            现在可以直接体验完整产品流程，不需要 API Key 或本地模型。建议先搜索 <strong>LLM</strong>、<strong>RAG</strong>、<strong>CoT</strong>、<strong>Reasoning</strong> 或 <strong>Multimodal</strong>。如果你想做更广的真实主题搜索和实时分析，再切换到自己的 API Key 或本地 Ollama 模型。
+          </div>
+        )}
+
+
         <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 120px 160px", gap: 12, marginBottom: 16 }}>
           <input value={projectTopic} onChange={(e) => setProjectTopic(e.target.value)} onKeyDown={handleTopicKeyDown} placeholder={text.inputPlaceholder} style={inputStyle} />
           <input type="number" min={1} max={20} value={limit} onChange={(e) => setLimit(Number(e.target.value))} style={inputStyle} />

@@ -9,6 +9,8 @@
 
 PaperPilot is an AI paper recommendation and decision assistant for researchers.
 
+> Demo mode lets you preview the full product without an API key or a local model. Start with `LLM`, `RAG`, `CoT`, `Reasoning`, or `Multimodal`. For real topic search and live analysis, switch to your own API key or a local Ollama model.
+
 Instead of showing a raw list of papers, it helps users answer the questions that actually matter:
 
 - Which paper should I read first?
