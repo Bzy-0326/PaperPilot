@@ -117,9 +117,44 @@ Running the app and using the core recommendation features are two different thi
 
 That means:
 
-- `Docker only` = the app can start, but core AI analysis will not fully work
+- `Docker + built-in demo mode` = the app starts and shows a full product preview immediately
 - `Docker + your own API key` = recommended public path, easiest for most users
 - `Docker + local Ollama model` = also works, but setup is heavier
+
+### Fastest first look: Docker + built-in demo mode
+
+If you just want to preview the product before preparing any model access, this is now the easiest path.
+
+You need:
+
+- Docker Desktop
+
+You do **not** need:
+
+- an API key
+- Ollama
+- a local model
+- Node.js
+- Python
+
+Run:
+
+```bash
+docker compose up --build
+```
+
+Then open the app and keep the default `PaperPilot Demo / no setup` preset.
+
+This mode is best for:
+
+- quick first try
+- screenshots and demos
+- GitHub visitors who want to see the product before deploying a real model path
+
+Tradeoffs:
+
+- uses built-in sample recommendations instead of live model analysis
+- great for product preview, not for evaluating real daily recommendation quality
 
 ### Recommended path: Docker + your own API key
 
@@ -171,9 +206,9 @@ Tradeoffs:
 
 ### If you do not have your own API key
 
-Then the product cannot complete the full AI recommendation workflow through online APIs.
+You can still use the built-in demo mode for a full product preview.
 
-In that case, your alternative is:
+If you want real recommendation and analysis results without an API key, your alternative is:
 
 - install `Ollama`
 - pull a local model
@@ -183,7 +218,35 @@ This works, but it is a heavier setup than the default public path.
 
 ## Deployment Modes
 
-### 1. Public / lightweight mode
+### 1. Demo / preview mode
+
+Best for:
+
+- first-time visitors
+- quick product preview
+- screenshots, GIFs, and demos
+- users who want to try the interface before setting up any model access
+
+Requirements:
+
+- Docker
+
+Pros:
+
+- zero model setup
+- zero API key requirement
+- fastest way to see the full UI and workflow
+
+Cons:
+
+- returns built-in sample recommendations
+- not suitable for evaluating live recommendation quality
+
+Recommendation:
+
+- use this as the first experience path for GitHub visitors
+
+### 2. Public / lightweight mode
 
 Best for:
 
@@ -210,9 +273,9 @@ Cons:
 
 Recommendation:
 
-- this should be the default path for almost everyone
+- this should be the default real-use path for most users after they try demo mode
 
-### 2. Advanced local mode
+### 3. Advanced local mode
 
 Best for users who explicitly want local inference and do not want to rely on an external API.
 
@@ -249,7 +312,7 @@ Recommendation:
 
 - use this only if you specifically want local inference
 
-### 3. Development mode
+### 4. Development mode
 
 Use this only if you want to edit the code.
 

@@ -17,6 +17,7 @@ from app.services.file_naming import (
     build_reader_download_pdf_name,
     build_standard_pdf_name,
 )
+from app.services.demo_catalog import ensure_demo_recommendations
 from app.services.hf_papers_fetcher import fetch_hf_daily_papers
 from app.services.light_analyzer import run_light_analysis
 from app.services.llm_client import get_effective_llm_info, temporary_llm_config
@@ -112,6 +113,23 @@ def _run_daily_pipeline(
     llm_config: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     normalized_topic = normalize_topic_label(project_topic)
+    if (llm_config or {}).get("provider") == "demo":
+        items = ensure_demo_recommendations(project_topic=normalized_topic, limit=limit)
+        return {
+            "message": "Demo mode is active. You are seeing built-in sample recommendations without an API key or local model.",
+            "project_topic": normalized_topic,
+            "fetched_count": len(items),
+            "checked_count": len(items),
+            "returned_count": len(items),
+            "items": items,
+            "cache_hit": True,
+            "demo_mode": True,
+            "llm": {
+                "provider": "demo",
+                "model": "paperpilot-demo",
+            },
+        }
+
     cached_items = get_fresh_cached_recommendations(
         project_topic=normalized_topic,
         limit=limit,

@@ -35,7 +35,7 @@ type FollowUpItem = {
   bucket: FollowUpBucket;
 };
 
-type LLMProvider = "ollama" | "deepseek" | "kimi" | "qwen" | "openai_compatible";
+type LLMProvider = "demo" | "ollama" | "deepseek" | "kimi" | "qwen" | "openai_compatible";
 
 type LLMConfig = {
   provider: LLMProvider;
@@ -64,13 +64,14 @@ const MODEL_SETTINGS_KEY = "paper_reader_model_settings_v1";
 const COMPARE_IDS_KEY = "paper_reader_compare_ids_v1";
 const RESEARCH_MODE_KEY = "paper_reader_mode_v1";
 const DEFAULT_LLM_CONFIG: LLMConfig = {
-  provider: "ollama",
-  model: "qwen2.5:7b",
-  base_url: "http://localhost:11434",
+  provider: "demo",
+  model: "paperpilot-demo",
+  base_url: "demo://built-in",
   api_key: "",
 };
 
 const MODEL_PRESETS: ModelPreset[] = [
+  { id: "paperpilot-demo", label: "PaperPilot Demo / no setup", provider: "demo", model: "paperpilot-demo", base_url: "demo://built-in" },
   { id: "ollama-qwen25-7b", label: "Ollama / qwen2.5:7b", provider: "ollama", model: "qwen2.5:7b", base_url: "http://localhost:11434" },
   { id: "ollama-qwen3-4b", label: "Ollama / qwen3:4b", provider: "ollama", model: "qwen3:4b", base_url: "http://localhost:11434" },
   { id: "deepseek-chat", label: "DeepSeek / deepseek-chat", provider: "deepseek", model: "deepseek-chat", base_url: "https://api.deepseek.com/v1" },
@@ -422,10 +423,12 @@ function translateModeDescription(mode: ResearchMode, language: UILanguage) {
 
 function translateProviderLabel(provider: LLMProvider, language: UILanguage) {
   if (language === "zh") {
+    if (provider === "demo") return "内置 Demo";
     if (provider === "ollama") return "本地 Ollama";
     if (provider === "openai_compatible") return "OpenAI 兼容接口";
     return `${provider.charAt(0).toUpperCase()}${provider.slice(1)} API`;
   }
+  if (provider === "demo") return "Built-in Demo";
   if (provider === "ollama") return "Local Ollama";
   if (provider === "openai_compatible") return "OpenAI-compatible API";
   if (provider === "deepseek") return "DeepSeek API";
@@ -446,7 +449,7 @@ export default function HomePage() {
   const [showFeatureDrawer, setShowFeatureDrawer] = useState(false);
   const [llmConfig, setLlmConfig] = useState<LLMConfig>(DEFAULT_LLM_CONFIG);
   const [backendLLM, setBackendLLM] = useState<LLMStatus | null>(null);
-  const [selectedPresetId, setSelectedPresetId] = useState("ollama-qwen25-7b");
+  const [selectedPresetId, setSelectedPresetId] = useState("paperpilot-demo");
   const [selectedCompareIds, setSelectedCompareIds] = useState<number[]>([]);
   const [researchMode, setResearchMode] = useState<ResearchMode>("default");
   const [followUpItems, setFollowUpItems] = useState<FollowUpItem[]>([]);
@@ -534,11 +537,11 @@ export default function HomePage() {
 
   const runDailyRecommendation = async () => {
     if (!projectTopic.trim()) return setMessage(text.needTopic);
-    if (!llmConfig.model.trim() || !llmConfig.base_url.trim()) {
+    if (llmConfig.provider !== "demo" && (!llmConfig.model.trim() || !llmConfig.base_url.trim())) {
       setMessage(text.needSettings);
       return setShowSettings(true);
     }
-    if (llmConfig.provider !== "ollama" && !llmConfig.api_key.trim()) {
+    if (!["demo", "ollama"].includes(llmConfig.provider) && !llmConfig.api_key.trim()) {
       setMessage(text.needApiKey);
       return setShowSettings(true);
     }
@@ -585,18 +588,18 @@ export default function HomePage() {
     const preset = MODEL_PRESETS.find((item) => item.provider === provider);
     if (preset) {
       setSelectedPresetId(preset.id);
-      setLlmConfig((prev) => ({ ...prev, provider: preset.provider, model: preset.model, base_url: preset.base_url, api_key: provider === "ollama" ? "" : prev.api_key }));
+      setLlmConfig((prev) => ({ ...prev, provider: preset.provider, model: preset.model, base_url: preset.base_url, api_key: ["demo", "ollama"].includes(provider) ? "" : prev.api_key }));
       return;
     }
     setSelectedPresetId("custom-openai");
-    setLlmConfig((prev) => ({ ...prev, provider, model: "", base_url: "", api_key: provider === "ollama" ? "" : prev.api_key }));
+    setLlmConfig((prev) => ({ ...prev, provider, model: "", base_url: "", api_key: ["demo", "ollama"].includes(provider) ? "" : prev.api_key }));
   };
 
   const handlePresetChange = (presetId: string) => {
     setSelectedPresetId(presetId);
     const preset = MODEL_PRESETS.find((item) => item.id === presetId);
     if (!preset) return;
-    setLlmConfig((prev) => ({ ...prev, provider: preset.provider, model: preset.model, base_url: preset.base_url, api_key: preset.provider === "ollama" ? "" : prev.api_key }));
+    setLlmConfig((prev) => ({ ...prev, provider: preset.provider, model: preset.model, base_url: preset.base_url, api_key: ["demo", "ollama"].includes(preset.provider) ? "" : prev.api_key }));
   };
 
   const goToDetail = (item: RecommendationItem | FollowUpItem) => {
@@ -797,15 +800,21 @@ export default function HomePage() {
             </div>
 
             <div style={modalHintStyle}>
-              {llmConfig.provider === "ollama" ? text.settingsTipLocal : text.settingsTipApi}
+              {llmConfig.provider === "demo"
+                ? (uiLanguage === "zh"
+                    ? "内置 Demo 模式不需要 API Key 或本地模型，适合第一次快速体验产品效果。"
+                    : "Built-in demo mode needs no API key or local model. Use it for a quick first product preview.")
+                : llmConfig.provider === "ollama"
+                  ? text.settingsTipLocal
+                  : text.settingsTipApi}
             </div>
 
             <div style={configGridStyle}>
               <label style={fieldStyle}><span style={labelStyle}>{text.modelPreset}</span><select value={selectedPresetId} onChange={(e) => handlePresetChange(e.target.value)} style={inputStyle}>{MODEL_PRESETS.map((preset) => <option key={preset.id} value={preset.id}>{preset.label}</option>)}</select></label>
-              <label style={fieldStyle}><span style={labelStyle}>{text.provider}</span><select value={llmConfig.provider} onChange={(e) => handleProviderChange(e.target.value as LLMProvider)} style={inputStyle}><option value="ollama">{translateProviderLabel("ollama", uiLanguage)}</option><option value="deepseek">{translateProviderLabel("deepseek", uiLanguage)}</option><option value="kimi">{translateProviderLabel("kimi", uiLanguage)}</option><option value="qwen">{translateProviderLabel("qwen", uiLanguage)}</option><option value="openai_compatible">{translateProviderLabel("openai_compatible", uiLanguage)}</option></select></label>
-              <label style={fieldStyle}><span style={labelStyle}>{text.modelName}</span><input value={llmConfig.model} onChange={(e) => { setSelectedPresetId("custom-openai"); setLlmConfig((prev) => ({ ...prev, model: e.target.value })); }} placeholder="qwen2.5:7b / deepseek-chat / qwen-plus" style={inputStyle} /></label>
-              <label style={fieldStyle}><span style={labelStyle}>{text.baseUrl}</span><input value={llmConfig.base_url} onChange={(e) => { setSelectedPresetId("custom-openai"); setLlmConfig((prev) => ({ ...prev, base_url: e.target.value })); }} placeholder="http://localhost:11434" style={inputStyle} /></label>
-              <label style={fieldStyle}><span style={labelStyle}>{text.apiKey}</span><input type="password" value={llmConfig.api_key} onChange={(e) => setLlmConfig((prev) => ({ ...prev, api_key: e.target.value }))} placeholder={llmConfig.provider === "ollama" ? "No API key needed" : "Enter a valid API key"} style={inputStyle} /></label>
+              <label style={fieldStyle}><span style={labelStyle}>{text.provider}</span><select value={llmConfig.provider} onChange={(e) => handleProviderChange(e.target.value as LLMProvider)} style={inputStyle}><option value="demo">{translateProviderLabel("demo", uiLanguage)}</option><option value="ollama">{translateProviderLabel("ollama", uiLanguage)}</option><option value="deepseek">{translateProviderLabel("deepseek", uiLanguage)}</option><option value="kimi">{translateProviderLabel("kimi", uiLanguage)}</option><option value="qwen">{translateProviderLabel("qwen", uiLanguage)}</option><option value="openai_compatible">{translateProviderLabel("openai_compatible", uiLanguage)}</option></select></label>
+              <label style={fieldStyle}><span style={labelStyle}>{text.modelName}</span><input value={llmConfig.model} onChange={(e) => { setSelectedPresetId("custom-openai"); setLlmConfig((prev) => ({ ...prev, model: e.target.value })); }} placeholder="paperpilot-demo / qwen2.5:7b / deepseek-chat / qwen-plus" style={inputStyle} /></label>
+              <label style={fieldStyle}><span style={labelStyle}>{text.baseUrl}</span><input value={llmConfig.base_url} onChange={(e) => { setSelectedPresetId("custom-openai"); setLlmConfig((prev) => ({ ...prev, base_url: e.target.value })); }} placeholder="demo://built-in / http://localhost:11434" style={inputStyle} /></label>
+              <label style={fieldStyle}><span style={labelStyle}>{text.apiKey}</span><input type="password" value={llmConfig.api_key} onChange={(e) => setLlmConfig((prev) => ({ ...prev, api_key: e.target.value }))} placeholder={["demo", "ollama"].includes(llmConfig.provider) ? "No API key needed" : "Enter a valid API key"} style={inputStyle} /></label>
             </div>
           </div>
         </div>
