@@ -1,31 +1,55 @@
 # PaperPilot
 
-> Stop scrolling paper feeds. Start making better reading decisions.
-
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Deploy-Docker-blue)](https://www.docker.com/)
 [![Bring Your Own API](https://img.shields.io/badge/LLM-BYO%20API-111827)](#quick-start)
 
-PaperPilot is an AI paper recommendation and decision assistant for researchers.
+PaperPilot is an AI research assistant that helps researchers rank, compare, and follow up on papers — so they can decide what to read next, not just collect more papers.
 
 > Demo mode lets you preview the full product without an API key or a local model. Start with `LLM`, `RAG`, `CoT`, `Reasoning`, or `Multimodal`. For real topic search and live analysis, switch to your own API key or a local Ollama model.
 
-Instead of showing a raw list of papers, it helps users answer the questions that actually matter:
+## What is PaperPilot?
 
-- Which paper should I read first?
-- Which one is worth deeper attention?
-- Which one is more realistic to reproduce?
-- Which one should I save for follow-up later?
+PaperPilot turns paper discovery into reading decisions.
 
-It turns a research topic into:
+Instead of giving you another long paper list, it helps you:
 
 - ranked recommendations
-- one-sentence takeaways
-- decision-friendly detail pages
-- side-by-side paper comparison
-- follow-up lists for reading, reproduction, and topic tracking
-- automatically renamed PDF downloads for cleaner storage
+- compare candidate papers side by side
+- decide which paper is worth reading first
+- keep important papers in a follow-up workflow
+
+It is built for researchers who don't just want to find papers — they want to decide what to read, reproduce, or track next.
+
+## Why not just use paper search or paper summary tools?
+
+Most tools help you find papers.
+PaperPilot helps you make reading decisions.
+
+It is designed for questions like:
+
+- Which paper should I read first?
+- Which one is more worth reproducing?
+- Which papers should I keep tracking?
+- Which candidate is better for my current project?
+
+## Core workflow
+
+1. Discover papers in one topic
+2. Rank papers by usefulness and relevance
+3. Compare shortlisted candidates
+4. Open a paper detail page for decision support
+5. Save papers into follow-up lists
+
+## Who is this for?
+
+PaperPilot is for people who often face questions like:
+
+- I found 20 papers. Which 3 should I read first?
+- These papers look similar. Which one is more useful for my project?
+- Which paper is more worth reproducing?
+- Which papers should I keep in my follow-up list?
 
 ## Demo
 
