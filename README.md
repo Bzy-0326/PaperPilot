@@ -3,174 +3,146 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Deploy-Docker-blue)](https://www.docker.com/)
-[![Bring Your Own API](https://img.shields.io/badge/LLM-BYO%20API-111827)](#quick-start)
+[![Bring Your Own API](https://img.shields.io/badge/LLM-BYO%20API-111827)](#快速开始)
 
-> Stop scrolling paper feeds. Start making better reading decisions.
+> 别再只是囤论文了，先决定下一篇该读什么。
 
-PaperPilot is an AI research assistant that helps you decide what to read next.
+PaperPilot 是一个面向研究者的 AI 论文推荐与决策助手。
 
-It helps you:
+它不是再给你一长串原始论文列表，而是帮你：
 
-- rank papers within the same topic
-- compare candidate papers side by side
-- understand which paper deserves deeper attention first
-- keep important papers in a follow-up workflow
+- 在同一主题下对论文进行排序
+- 并排比较几篇候选论文
+- 判断哪篇更值得优先投入时间
+- 把有价值的论文纳入后续跟进清单
 
-And it keeps downloaded PDFs easier to search and manage with clean filenames based on paper titles and dates.
+它还会把下载下来的 PDF 自动整理成更易读的文件名，带上标题和日期，后面搜索、保存、归档都会轻松很多。
 
-> Demo mode lets you preview the full product without an API key or a local model. Start with LLM, RAG, CoT, Reasoning, or Multimodal. For real topic search and live analysis, switch to your own API key or a local Ollama model.
+> 当前默认是 **Demo 模式**，不需要 API Key，也不需要本地模型。建议先搜索 `LLM`、`RAG`、`CoT`、`Reasoning`、`Multimodal`。如果你想做更广的真实主题搜索和实时分析，再切换到你自己的 API Key 或本地 Ollama 模型。
 
-## What is PaperPilot?
+## PaperPilot 想解决什么问题？
 
-PaperPilot turns paper discovery into reading decisions.
+大多数论文工具擅长“帮你找到论文”，但真正让人头疼的是找到以后：
 
-Most paper tools help you find papers.
-PaperPilot helps you decide what to do with them.
+- 我到底应该先读哪篇？
+- 哪篇更值得精读？
+- 哪篇更适合复现？
+- 哪些论文值得继续跟进，而不是看完就忘？
 
-It is designed for questions like:
+PaperPilot 想做的，不是让你收藏更多论文，而是帮你把“发现论文”变成“做阅读决策”。
 
-- Which paper should I read first?
-- Which one is more worth reproducing?
-- Which papers should I keep tracking?
-- Which candidate is the best fit for my current topic?
+## 核心能力
 
-## Core capabilities
+- **同主题排序推荐**：不是原始列表，而是更适合阅读决策的排序结果
+- **候选论文对比**：把 2 到 3 篇论文放在一起，快速判断先投入哪篇
+- **面向决策的详情页**：不只给摘要，还会给推荐结论、背景、方法、创新点和局限性
+- **跟进清单**：可以把论文加入待读、复现、选题备选，后续继续处理
 
-- ranked recommendations within the same topic
-- side-by-side paper comparison
-- decision-friendly paper detail pages
-- follow-up workflows for papers worth reading later
+## 为什么更贴近真实研究工作流？
 
-## Workflow-friendly details
+- PDF 下载后会自动规范文件名，包含论文标题和日期
+- 下载后的论文更容易在本地搜索、整理和归档
+- 从“看到论文”到“继续跟进”，整个流程不会在一次浏览后断掉
 
-- clean PDF filenames with paper titles and dates
-- downloaded papers stay easier to search and manage locally
-- built for real research workflows, not just paper browsing
+## Demo 演示
 
-## Demo
-
-See the full product flow below:
+先看这段演示 GIF，可以快速理解产品怎么工作：
 
 ![Demo](./docs/assets/demo.gif)
 
-## Product Tour
+## 产品速览
 
-### 1. Ranked Recommendations
+### 1. 每日推荐
 
-The homepage turns a topic into a ranked list with recommendation scores, one-sentence takeaways, and compact action buttons.
+首页会把一个研究主题整理成排序后的推荐结果，展示推荐分、一句话总结和紧凑的操作入口。
 
 ![Homepage](./docs/assets/homepage.jpg)
 
-### 2. Decision Comparison
+### 2. 论文对比
 
-Instead of showing a flat list of papers, PaperPilot helps users judge which candidate deserves deeper attention first.
+它不是简单把两篇论文并排摆出来，而是帮助你判断：在当前主题下，哪篇更值得先投入时间。
 
 ![Compare View](./docs/assets/compare-page.jpg)
 
-### 3. Detail Analysis
+### 3. 详情分析
 
-Each paper has a decision-friendly detail page with recommendation conclusion, background, summary, method, innovation, limitations, and reproducibility evidence.
+每篇论文都有更适合做决策的详情页，包含推荐结论、研究背景、摘要、方法、创新点、局限性和复现信息。
 
 ![Detail Page](./docs/assets/detail-page.jpg)
 
-### 4. Follow-Up Workflow
+### 4. 跟进工作流
 
-Users can keep papers for reading, reproduction, or topic tracking instead of losing them after one browse session.
+你可以把论文加入待读、复现、选题备选，而不是看完一次就丢掉。
 
 <p align="center">
-  <img src="./docs/assets/follow-up-reading.png" alt="Follow-Up Reading List" width="32%" />
-  <img src="./docs/assets/follow-up-reproduce.png" alt="Follow-Up Reproduction List" width="32%" />
-  <img src="./docs/assets/follow-up-topic.png" alt="Follow-Up Topic Candidates" width="32%" />
+  <img src="./docs/assets/follow-up-reading.png" alt="待读清单" width="32%" />
+  <img src="./docs/assets/follow-up-reproduce.png" alt="复现清单" width="32%" />
+  <img src="./docs/assets/follow-up-topic.png" alt="选题备选" width="32%" />
 </p>
 
-## Why PaperPilot?
+## 为什么不是普通论文搜索工具？
 
-Most tools help you search papers.
-PaperPilot helps you make reading decisions.
+很多工具帮你“搜论文”。
+PaperPilot 更关注“接下来该怎么读”。
 
-Instead of only listing papers, it helps you:
+它不只是列论文，而是帮助你：
 
-- rank papers under the same topic
-- compare multiple candidates before reading deeply
-- keep useful papers in a follow-up workflow
-- manage downloaded PDFs with readable filenames based on titles and dates
+- 在同一主题下排序候选论文
+- 在深入阅读前先比较多个候选
+- 把有价值的论文留在跟进流程里
+- 用更易读的文件名保存 PDF，方便后续查找和管理
 
-## Product Highlights
+## 适合谁？
 
-### 1. Daily Topic-Based Recommendations
+如果你经常会遇到下面这些问题，PaperPilot 会比较适合你：
 
-- search by research topics such as `CoT`, `LLM`, `RAG`, `Multimodal`, or `Reasoning`
-- get ranked paper cards instead of a raw feed
-- each card shows a one-sentence takeaway and compact tags
-- recommendation scores are visible as a product surface, while ranking is driven by same-topic relative comparison
-- supports multiple research goals such as deep reading, reproduction, inspiration, and related work review
+- 我找到 20 篇论文了，但不知道先读哪 3 篇
+- 这几篇看起来都差不多，哪篇对我的项目更有用？
+- 哪篇更值得复现？
+- 哪些论文应该留下来持续跟进？
 
-### 2. Decision-Friendly Detail Pages
+## 快速开始
 
-- recommendation conclusion
-- background and goal
-- summary and method notes
-- reproducibility evidence
-- cleaner resource presentation
-- normalized PDF download naming for easier local storage
+这个仓库优先为“最低上手门槛”设计。
 
-### 3. Paper Comparison
+### 你真正需要什么？
 
-- compare 2 to 3 papers under the same topic
-- quickly judge which one deserves time first
-- useful for reading, reproduction, inspiration, and related work decisions
-- pushes the product beyond paper discovery into research decision support
+“把应用跑起来”和“让推荐分析功能真正工作”是两件事：
 
-### 4. My Follow-Ups
+- `Docker` 负责把前后端服务跑起来
+- `模型能力` 负责完成推荐、分析、对比和跟进推理
 
-- save papers into reading list
-- save papers into reproduction list
-- save papers into topic candidate list
-- persist follow-up items in the backend database
-- keep the workflow alive after discovery
+所以现在有三条路径：
 
-## Quick Start
+- `Docker + 内置 Demo`：应用能直接启动，并立刻展示完整产品预览
+- `Docker + 你自己的 API Key`：推荐的大多数用户路径，上手最轻
+- `Docker + 本地 Ollama 模型`：也能用，但部署更重
 
-This repo is optimized for the lightest onboarding path first.
+### 最轻体验：Docker + 内置 Demo
 
-### What you actually need
+如果你只是想先看看产品长什么样、流程顺不顺，这是最容易的路径。
 
-Running the app and using the core recommendation features are two different things:
-
-- `Docker` runs the frontend and backend services
-- `A model provider` powers recommendation, analysis, comparison, and follow-up reasoning
-
-That means:
-
-- `Docker + built-in demo mode` = the app starts and shows a full product preview immediately
-- `Docker + your own API key` = recommended public path, easiest for most users
-- `Docker + local Ollama model` = also works, but setup is heavier
-
-### Fastest first look: Docker + built-in demo mode
-
-If you just want to preview the product before preparing any model access, this is now the easiest path.
-
-You need:
+你需要：
 
 - Docker Desktop
 
-You do **not** need:
+你不需要：
 
-- an API key
+- API Key
 - Ollama
-- a local model
+- 本地模型
 - Node.js
 - Python
 
-Run:
+运行：
 
 ```bash
 docker compose up --build
 ```
 
-Then open the app and keep the default `PaperPilot Demo / no setup` preset.
+然后打开网页，保持默认的 `PaperPilot Demo / no setup`。
 
-For the clearest first preview, start with one of these demo topics:
+为了最清楚地体验产品效果，建议先搜索这些 Demo 主题：
 
 - `LLM`
 - `RAG`
@@ -178,199 +150,192 @@ For the clearest first preview, start with one of these demo topics:
 - `Reasoning`
 - `Multimodal`
 
-This mode is best for:
+这个模式适合：
 
-- quick first try
-- screenshots and demos
-- GitHub visitors who want to see the product before deploying a real model path
+- 第一次尝试
+- 看截图和 GIF
+- GitHub 路人先快速体验产品逻辑
 
-Tradeoffs:
+它的限制也要讲清楚：
 
-- uses built-in sample recommendations instead of live model analysis
-- great for product preview, not for evaluating real daily recommendation quality
+- 返回的是内置样例推荐，不是实时大模型分析
+- 更适合看产品流程，不适合评估真实推荐质量
+- 对 `LLM`、`RAG`、`CoT`、`Reasoning`、`Multimodal` 这类预览主题效果最好
+- 如果你想做更广的主题搜索、实时推荐生成和真实分析结果，还是需要自己的 API Key 或本地 Ollama 模型
 
-Important:
+### 推荐路径：Docker + 你自己的 API Key
 
-- demo mode is meant for first-time preview and GitHub visitors
-- it can show the full product workflow without any API key
-- demo mode is optimized for preview topics such as `LLM`, `RAG`, `CoT`, `Reasoning`, and `Multimodal`
-- for other topics, demo mode still shows the interface and sample workflow, but it is not a live topic-specific analysis path
-- if you want broader topic coverage, real-time recommendation generation, and real analysis results for your own searches, you still need either your own API key or a local Ollama model
+这是最适合大多数用户的正式使用方式。
 
-### Recommended path: Docker + your own API key
-
-This is the best choice for most users.
-
-You do **not** need:
+你不需要：
 
 - Ollama
-- a local 7B model download
+- 本地 7B 模型下载
 - Node.js
 - Python
 
-You **do** need:
+你需要：
 
 - Docker Desktop
-- your own API key from `DeepSeek`, `Kimi`, `Qwen`, or another OpenAI-compatible provider
+- 你自己的 API Key，例如 `DeepSeek`、`Kimi`、`Qwen` 或其他 OpenAI-compatible 服务
 
-Run:
+运行：
 
 ```bash
 docker compose up --build
 ```
 
-Then open:
+然后打开：
 
-- Frontend: [http://localhost:3000](http://localhost:3000)
-- Backend docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+- 前端：[http://localhost:3000](http://localhost:3000)
+- 后端文档：[http://localhost:8000/docs](http://localhost:8000/docs)
 
-Inside the app:
+进入应用后：
 
-1. Open `Model Settings`
-2. Choose `DeepSeek`, `Kimi`, `Qwen`, or another OpenAI-compatible API
-3. Paste your own API key
-4. Enter a topic like `CoT`, `LLM`, `RAG`, `Reasoning`, or `Multimodal`
-5. Start using the product
+1. 打开 `模型设置`
+2. 选择 `DeepSeek`、`Kimi`、`Qwen` 或其他 OpenAI-compatible API
+3. 填入自己的 API Key
+4. 输入一个主题，例如 `CoT`、`LLM`、`RAG`、`Reasoning`、`Multimodal`
+5. 开始使用
 
-Why this path is recommended:
+为什么推荐这条路：
 
-- lowest deployment friction
-- no local model download
-- better cross-platform experience
-- easiest path for GitHub visitors
+- 部署门槛最低
+- 不需要下载本地模型
+- 跨平台体验更好
+- 更适合 GitHub 用户
 
-Tradeoffs:
+缺点：
 
-- requires your own API key
-- depends on external model service availability
-- model usage costs depend on your provider
+- 需要自己的 API Key
+- 依赖外部模型服务可用性
+- 模型调用成本取决于 provider
 
-In practice, for lightweight daily recommendation usage such as Top 3 or Top 5 searches, API usage is usually modest. The actual cost still depends on your provider, model choice, and how often you search.
+通常来说，在 Top 3 / Top 5 这种轻量日常推荐场景里，API 消耗不会特别高。具体成本还是取决于 provider、模型和你的使用频率。
 
-### If you do not have your own API key
+### 如果你没有自己的 API Key
 
-You can still use the built-in demo mode for a full product preview.
+你仍然可以先用内置 Demo 模式体验完整产品流程。
 
-If you want real recommendation and analysis results without an API key, your alternative is:
+如果你不想用 API Key，但又想要真实推荐和分析结果，那么替代方案就是：
 
-- install `Ollama`
-- pull a local model
-- run the app with local inference
+- 安装 `Ollama`
+- 下载一个本地模型
+- 使用本地推理路径运行产品
 
-This works, but it is a heavier setup than the default public path.
+只是这条路的门槛会明显高于默认的公开使用方式。
 
-## Deployment Modes
+## 部署模式
 
-### 1. Demo / preview mode
+### 1. Demo / 预览模式
 
-Best for:
+适合：
 
-- first-time visitors
-- quick product preview
-- screenshots, GIFs, and demos
-- users who want to try the interface before setting up any model access
+- 第一次访问的用户
+- 快速看产品效果
+- 截图、GIF、演示
+- 还没准备模型能力，但想先体验界面的人
 
-Requirements:
-
-- Docker
-
-Pros:
-
-- zero model setup
-- zero API key requirement
-- fastest way to see the full UI and workflow
-
-Cons:
-
-- returns built-in sample recommendations
-- not suitable for evaluating live recommendation quality
-
-Recommendation:
-
-- use this as the first experience path for GitHub visitors
-
-### 2. Public / lightweight mode
-
-Best for:
-
-- first-time users
-- GitHub visitors
-- demos
-- cross-platform onboarding
-
-Requirements:
+需要：
 
 - Docker
-- your own API key
 
-Pros:
+优点：
 
-- easiest setup
-- no local model download
-- works better across Windows and macOS
+- 不用配模型
+- 不用 API Key
+- 体验完整 UI 和工作流最快
 
-Cons:
+缺点：
 
-- requires an API key
-- depends on third-party model services
+- 返回的是内置样例推荐
+- 不适合评估真实推荐质量
 
-Recommendation:
+推荐：
 
-- this should be the default real-use path for most users after they try demo mode
+- 作为 GitHub 路人的第一体验路径
 
-### 3. Advanced local mode
+### 2. 公开 / 轻量模式
 
-Best for users who explicitly want local inference and do not want to rely on an external API.
+适合：
 
-Requirements:
+- 第一次正式使用的用户
+- GitHub 访客
+- 演示和跨平台体验
+
+需要：
+
+- Docker
+- 你自己的 API Key
+
+优点：
+
+- 上手最轻
+- 不用下载本地模型
+- Windows / macOS 体验都更好
+
+缺点：
+
+- 需要 API Key
+- 依赖第三方模型服务
+
+推荐：
+
+- 这是大多数用户在体验完 Demo 后最应该切换到的正式路径
+
+### 3. 进阶本地模式
+
+适合那些明确想做本地推理、而且不想依赖外部 API 的用户。
+
+需要：
 
 - Docker
 - Ollama
-- a local model such as `qwen2.5:7b`
+- 一个本地模型，比如 `qwen2.5:7b`
 
-Example:
+示例：
 
 ```bash
 ollama pull qwen2.5:7b
 ```
 
-Then use:
+然后在应用里使用：
 
 - provider: `ollama`
 - model: `qwen2.5:7b`
 - base URL: `http://localhost:11434`
 
-Pros:
+优点：
 
-- no external API key required
-- more private local usage
+- 不需要外部 API Key
+- 更适合本地私有化使用
 
-Cons:
+缺点：
 
-- heavier setup
-- local model download is large
-- slower or harder for first-time users
+- 部署更重
+- 本地模型体积较大
+- 对第一次使用者不够友好
 
-Recommendation:
+推荐：
 
-- use this only if you specifically want local inference
+- 只有当你明确要本地推理时再选这条路
 
-### 4. Development mode
+### 4. 开发模式
 
-Use this only if you want to edit the code.
+只有当你想修改代码时再用这条路。
 
-This mode is intentionally not the primary public onboarding path.
+这不是默认的公开上手路径。
 
 #### Windows
 
-Frontend:
+前端：
 
 ```bash
 cd paper-reader-ui
 start_frontend.bat
 ```
 
-Backend:
+后端：
 
 ```bash
 cd paper-reader-v1
@@ -379,59 +344,59 @@ start_backend.bat
 
 #### macOS / Linux
 
-Frontend:
+前端：
 
 ```bash
 cd paper-reader-ui
 ./start_frontend.sh
 ```
 
-Backend:
+后端：
 
 ```bash
 cd paper-reader-v1
 ./start_backend.sh
 ```
 
-Notes:
+说明：
 
-- `.bat` files are Windows-only convenience scripts
-- `.sh` files are for macOS/Linux
-- if you only want to try the product, prefer Docker instead of local development
+- `.bat` 是 Windows 便捷脚本
+- `.sh` 是 macOS / Linux 脚本
+- 如果你只是想用产品，优先走 Docker，而不是本地开发环境
 
-## Tech Stack
+## 技术栈
 
-### Frontend
+### 前端
 
 - Next.js
 - TypeScript
 
-### Backend
+### 后端
 
 - FastAPI
 - SQLite
 
-### Model Layer
+### 模型层
 
 - OpenAI-compatible API providers
-- optional Ollama local inference
+- 可选 Ollama 本地推理
 
-## Why SQLite First
+## 为什么先用 SQLite
 
-This project is intentionally kept lightweight for:
+这个项目故意保持轻量，方便：
 
-- demos
-- GitHub sharing
-- local product showcase
-- fast first deployment
+- 演示
+- GitHub 分享
+- 本地产品展示
+- 快速第一次部署
 
-Advanced users can later replace it with an external database if they want larger-scale persistence.
+如果后续有更大的持久化需求，高级用户可以自行切换到外部数据库。
 
-See:
+参考：
 
 - [`paper-reader-v1/.env.example.txt`](./paper-reader-v1/.env.example.txt)
 
-## Repo Structure
+## 仓库结构
 
 ```text
 paper-project/
@@ -445,16 +410,16 @@ paper-project/
 `- paper-reader skill/
 ```
 
-## Open Source Goal
+## 这个开源项目想表达什么
 
-This repo is not just a code dump. It is intended to show product thinking:
+它不只是代码堆在一起，而是想展示一种产品思考：
 
-- ranking instead of raw listing
-- decision support instead of paper collection
-- follow-up workflow instead of one-time browsing
-- deployability instead of environment-heavy prototypes
-- practical PDF saving instead of messy download clutter
+- 不是原始列表，而是排序
+- 不是只有发现，而是决策支持
+- 不是一次性浏览，而是跟进工作流
+- 不是环境很重的原型，而是可以部署的产品
+- 不是混乱下载，而是更适合保存的 PDF 文件管理
 
-## License
+## 开源协议
 
 MIT
